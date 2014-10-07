@@ -49,7 +49,8 @@
 <h3>
 <a name="getting-the-source" class="anchor" href="#getting-the-source"><span class="octicon octicon-link"></span></a>Getting the source</h3>
 
-<p>Let's get started by downloading the codelab base code, you can find links for doing this on the right side of the page. Or just follow this <a href="https://github.com/diegofigueroa/fit-wear-lab/archive/master.zip">link</a></p>
+<p>Let's get started by downloading the codelab base code, you can find links for doing this on the right side of the page. Or just follow this <a href="https://github.com/diegofigueroa/fit-wear-lab/archive/master.zip">link</a>
+Extract the <code>.zip</code> file contents in some place you remember, we'll use this later.</p>
 
 <h3>
 <a name="steps" class="anchor" href="#steps"><span class="octicon octicon-link"></span></a>Steps</h3>
@@ -70,8 +71,8 @@
 <p>Set up the Android Studio project and explore the sample app.</p>
 
 <ol>
-<li><a href="/fit-wear-lab/#welcome!">Welcome!</a></li>
-<li><a href="/fit-wear-lab/">Start Android Studio and import the Android Wear codelab project.</a></li>
+<li><a href="/fit-wear-lab/#welcome-1">Welcome!</a></li>
+<li><a href="/fit-wear-lab/">Start Android Studio and import the Android Wear codelab project</a></li>
 <li><a href="/fit-wear-lab/">Build the sample app</a></li>
 <li><a href="/fit-wear-lab/">Run the sample app</a></li>
 <li><a href="/fit-wear-lab/">Explore the app and the code</a></li>
@@ -82,6 +83,65 @@
 
 <p>In this codelab you will modify a <strong>very</strong> simple Android application. It's designed to be a playground where you can build wathever you want using Android Notifications,
 making them look beatiful on an Android Wear device, but also being useful and easy to work with.</p>
+
+<p>Currently, users can launch the app from the Android launcher and tap a button to fire a very simple Android notification. Nothing very interesting so far.</p>
+
+<p>You will update this application to include different kind of notifications, and also extending them to take advantage of Android Wear features.</p>
+
+<p>The three things you will learn in this codelab are:  </p>
+
+<ol>
+<li>Display notifications on Wear.</li>
+<li>Include Actions on Android notifications.</li>
+<li>Extend Android Notifications to be even more useful on a wearable device.</li>
+</ol><p>You will need to set up the following resources.</p>
+
+<ul>
+<li>Android Studio.</li>
+<li>Android device or emulator to test with.</li>
+<li>Android Wear device or emulator to test with.</li>
+</ul><h4>
+<a name="start-android-studio-and-import-the-android-wear-codelab-project" class="anchor" href="#start-android-studio-and-import-the-android-wear-codelab-project"><span class="octicon octicon-link"></span></a>Start Android Studio and import the Android Wear codelab project</h4>
+
+<ol>
+<li>Open Android studio</li>
+<li>In Android Studio, choose File -&gt; Import Project and import the project you downloaded a few minutes ago.</li>
+<li>After the import, your project will appear in Android Studio.</li>
+</ol><h4>
+<a name="build-the-sample-app" class="anchor" href="#build-the-sample-app"><span class="octicon octicon-link"></span></a>Build the sample app</h4>
+
+<ol>
+<li>Select Build &gt; Make Project. This will build the entire project. Make sure build completes without errors.</li>
+</ol><h4>
+<a name="run-the-sample-app" class="anchor" href="#run-the-sample-app"><span class="octicon octicon-link"></span></a>Run the sample app</h4>
+
+<h5>
+<a name="prepare-the-android-device" class="anchor" href="#prepare-the-android-device"><span class="octicon octicon-link"></span></a>Prepare the Android device.</h5>
+
+<p>If you have a physical device, connect it to your codelab machine via USB.
+If you don't have a physical device you can use an emulator (AVD), you should find one alredy created for you.</p>
+
+<ol>
+<li>In Android Studio, click  (<code>Shift-F10</code>) to run the Android app.</li>
+<li>To run on your connected device, click Choose a running device and then click the device. (Or you can launch on an emulator.)</li>
+<li>Wait for the device to launch the application.</li>
+<li>You will eventually see the main screen with a simple button.</li>
+</ol><h4>
+<a name="explore-the-app-and-the-code" class="anchor" href="#explore-the-app-and-the-code"><span class="octicon octicon-link"></span></a>Explore the app and the code</h4>
+
+<p>This simple music app consists of a single activity showing a button. </p>
+
+<p>These screen correspond to the following code files.</p>
+
+<ul>
+<li>
+<code>MainActivity.java</code>: The main entry point for the app. It shows the button.</li>
+<li>
+<code>The AndroidManifest.xml</code> file configures the app components.</li>
+<li>
+<code>activity_main.xml</code>: Set up the UI of the visible components.</li>
+<li>Other files define image, string constants and other kind of resources.</li>
+</ul>
       </section>
     </div>
 
