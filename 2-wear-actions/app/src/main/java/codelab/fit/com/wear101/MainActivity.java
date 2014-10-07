@@ -47,6 +47,10 @@ public class MainActivity extends Activity {
         createNotificationWithAction("Test", "Hi I'm a simple notification, with some actions.");
     }
 
+    public void showSimpleNotificationWithWearAction(final View button) {
+        createNotificationWithWearAction("Test", "Hi I'm a simple notification, with actions too!");
+    }
+
     private void createSimpleNotification(final String title, final String content) {
         // An id for the notification to be showed, it should be unique.
         final int notificationId = 001;
@@ -87,6 +91,37 @@ public class MainActivity extends Activity {
                 .setContentIntent(viewPendingIntent)
                 .setAutoCancel(true)
                 .addAction(R.drawable.ic_launcher, "View map", mapPendingIntent);
+
+        // Get an instance of the NotificationManager service
+        final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        // Builds the notification and issues it with notification manager.
+        notificationManager.notify(notificationId, notificationBuilder.build());
+    }
+
+    private void createNotificationWithWearAction(final String title, final String description) {
+        // An id for the notification to be showed, it should be unique.
+        final int notificationId = 003;
+
+        // Build an intent for an action to view a map
+        final Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+        final Uri geoUri = Uri.parse("geo:0,0?q=");
+        mapIntent.setData(geoUri);
+
+        final PendingIntent mapPendingIntent = PendingIntent.getActivity(this, 0, mapIntent, 0);
+        final PendingIntent viewPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+
+        // Create a wear only action to extend the notification
+        final NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.ic_launcher, "View map", mapPendingIntent).build();
+
+        final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(description)
+                .setContentIntent(viewPendingIntent)
+                .setAutoCancel(true)
+                .addAction(R.drawable.ic_launcher, "Open map", mapPendingIntent)
+                .extend(new NotificationCompat.WearableExtender().addAction(action));
 
         // Get an instance of the NotificationManager service
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
