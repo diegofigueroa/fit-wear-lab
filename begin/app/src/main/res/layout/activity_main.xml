@@ -9,6 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show Notification"
-        android:id="@+id/button_simple_notification"
+        android:id="@+id/button1"
         android:onClick="showSimpleNotification" />
+
+    <!--<Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Notification with Action"
+        android:id="@+id/button2"
+        android:onClick="showSimpleNotificationWithAction" />-->
 </LinearLayout>

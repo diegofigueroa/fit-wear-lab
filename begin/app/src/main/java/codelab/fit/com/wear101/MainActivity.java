@@ -1,11 +1,14 @@
 package codelab.fit.com.wear101;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.RemoteInput;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +45,12 @@ public class MainActivity extends Activity {
         createSimpleNotification("Test", "Hi I'm a simple notification, you should be able to se mee on your watch!");
     }
 
+    public void showSimpleNotificationWithAction(final View button) {
+        // implement me :)
+    }
+
+
+
     private void createSimpleNotification(final String title, final String content) {
         // An id for the notification to be showed, it should be unique.
         final int notificationId = 001;
@@ -62,4 +71,7 @@ public class MainActivity extends Activity {
         // Builds the notification and issues it with notification manager.
         notificationManager.notify(notificationId, notificationBuilder.build());
     }
+
+
+    private final String EXTRA_VOICE_REPLY = "extra_voice_reply";
 }
