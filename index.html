@@ -63,7 +63,7 @@ Extract the <code>.zip</code> file contents in some place you remember, we'll us
 </ol><p>Let's get started! Scroll down to see your first step.</p>
 
 <h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<a name="1-getting-started" class="anchor" href="#1-getting-started"><span class="octicon octicon-link"></span></a>1. Getting started</h2>
 
 <p>Set up the Android Studio project and explore the sample app.</p>
 
@@ -73,7 +73,7 @@ Extract the <code>.zip</code> file contents in some place you remember, we'll us
 <li><a href="/fit-wear-lab/#build-the-sample-app">Build the sample app</a></li>
 <li><a href="/fit-wear-lab/#run-the-sample-app">Run the sample app</a></li>
 <li><a href="/fit-wear-lab/#explore-the-app-and-the-code">Explore the app and the code</a></li>
-<li><a href="/fit-wear-lab/#test-app-funcionality">Test app functionality</a></li>
+<li><a href="/fit-wear-lab/#test-app-functionality">Test app functionality</a></li>
 </ol><h4>
 <a name="welcome-1" class="anchor" href="#welcome-1"><span class="octicon octicon-link"></span></a>Welcome!</h4>
 
@@ -115,33 +115,154 @@ making them look beatiful on an Android Wear device, but also being useful and e
 If you don't have a physical device you can use an emulator (AVD), you should find one alredy created for you.</p>
 
 <ol>
-<li>In Android Studio, click  (<code>Shift-F10</code>) to run the Android app.</li>
+<li>In Android Studio, click (<code>Shift-F10</code>) to run the Android app.</li>
 <li>To run on your connected device, click Choose a running device and then click the device. (Or you can launch on an emulator.)</li>
 <li>Wait for the device to launch the application.</li>
 <li>You will eventually see the main screen with a simple button.</li>
 </ol><h4>
 <a name="explore-the-app-and-the-code" class="anchor" href="#explore-the-app-and-the-code"><span class="octicon octicon-link"></span></a>Explore the app and the code</h4>
 
-<p>This simple music app consists of a single activity showing a button. </p>
+<p>This simple app consists of a main activity showing a button. </p>
 
-<p>These screen correspond to the following code files.</p>
+<p>You shuld find the following code files.</p>
 
 <ul>
 <li>
 <code>MainActivity.java</code>: The main entry point for the app. It shows the button.</li>
 <li>
+<code>VoiceCommandActivity.java</code>: This will eventually show the result of giving a voice command to your watch.</li>
+<li>
 <code>The AndroidManifest.xml</code> file configures the app components.</li>
 <li>
-<code>activity_main.xml</code>: Set up the UI of the visible components.</li>
+<code>activity_main.xml</code>, <code>activity_voice_command.xml</code>: Set up the UI of the visible components.</li>
 <li>Other files define image, string constants and other kind of resources.</li>
 </ul><h4>
 <a name="test-app-functionality" class="anchor" href="#test-app-functionality"><span class="octicon octicon-link"></span></a>Test app functionality</h4>
 
 <ol>
-<li>If the app is not already running, click (Shift-F10) in Android Studio to launch it.</li>
+<li>If the app is not already running, click (<code>Shift-F10</code>) in Android Studio to launch it.</li>
 <li>On the main screen, tap the button.</li>
 <li>A simple notification should be shown on the screen.</li>
-</ol>
+</ol><h2>
+<a name="2-set-up-an-android-virtual-device-avd-for-wear" class="anchor" href="#2-set-up-an-android-virtual-device-avd-for-wear"><span class="octicon octicon-link"></span></a>2. Set up an Android Virtual Device (AVD) for Wear</h2>
+
+<p>Your codelab computer should have a working Android Studio installation, including AVDs for Android Wear and Android.</p>
+
+<p>In this codelab we'll need a working AVD for Android Wear, and an Android device running Android 4.3+. These two devices should be configured
+to be paired together. In order to achieve this, you will need:</p>
+
+<ol>
+<li>Install the Android Wear application on your Android device from the Play Store.</li>
+<li>Start your Android Wear AVD from the AVD Manager using Android Studio.</li>
+<li>Set up adb to allow incoming connections for your Android Wear AVD: <code>adb -d forward tcp:5601 tcp:5601</code>.</li>
+<li>Open the Android Wear app on your phone, select <code>Pair with a new wearable</code> &gt; Tap the settings button at the top &gt; <code>Pair with emulator</code>.</li>
+<li>If you got lucky, your AVD will be paired now with your phone.
+5.1 If you found issues, try the following:
+5.2 <code>adb kill-server</code>
+5.3 <code>abd start-server</code>
+5.4 <code>adb -d forward tcp:5601 tcp:5601</code>
+</li>
+</ol><p>Your phone should be now set up to an emulated (or real Android Wear device if available) Android Wear device, you are now ready to start doing some cool stuff.</p>
+
+<h2>
+<a name="3-showing-my-first-notification-on-wear" class="anchor" href="#3-showing-my-first-notification-on-wear"><span class="octicon octicon-link"></span></a>3. Showing my first notification on Wear</h2>
+
+<p>Fire up the simple application on your phone, and tap the only button on the screen. This should show a very simple notification on your watch.
+Pretty cool, right? You will be doing much more neat stuff from now on, get ready!</p>
+
+<h2>
+<a name="4-extending-notifications-for-wear" class="anchor" href="#4-extending-notifications-for-wear"><span class="octicon octicon-link"></span></a>4. Extending notifications for Wear</h2>
+
+<p>Let's do some updates the app, we will add some new features, in order to take advantage of some of the nice stuff Android provides to create notifications.</p>
+
+<h3>
+<a name="41-notifications-with-actions" class="anchor" href="#41-notifications-with-actions"><span class="octicon octicon-link"></span></a>4.1 Notifications with Actions</h3>
+
+<p>Let's start by adding a new button on the <code>MainActivity</code>, this button should trigger a notification, but unlike the notifications being showed so far, this will include actions.
+Notification actions allows a user to do more, like replying to a message, favoriting a Tweet, confirming a download, etc. from the notification itself.</p>
+
+<p>The cool thing about this actions, is that without doing anything special, this actions will also be available on your watch. This means that your users will be able to interact
+with this kind of notifications without pulling up their phone, just by tapping on their watches. This is great!</p>
+
+<p>What you will do:</p>
+
+<ol>
+<li>Add a button element to <code>activity_main.xml</code> layout, (you can just uncomment the one at the bottom, or add a new one). Remember to add <code>onClick</code> handler.</li>
+<li>Add a method on <code>MainActitivy.java</code> to handle the <code>onClick</code> event on the button. This method is the one that will trigger the notification.</li>
+<li>Create a notifcation using <code>NotificationCompat.Builder</code>, remember to set a title, content and icon.</li>
+<li>Use <code>addAction</code> on the notification builder to add an action to the notification being built.</li>
+<li>Get an instance of <code>NotificationManagerCompat</code> and send the notification. You should be able to see it on your watch. Swipe left and find your action!</li>
+</ol><h3>
+<a name="42-notifications-with-actions-specially-designed-for-wear" class="anchor" href="#42-notifications-with-actions-specially-designed-for-wear"><span class="octicon octicon-link"></span></a>4.2 Notifications with Actions specially designed for Wear</h3>
+
+<p>Adding actions to notifications is very useful, and provides quick access to common needs of your users. But there will be cases where having the same set of actions
+on phones and wearables won't work. This may be for several reasons, maybe some action just won't make sense on a wearable, or you may want to show some actions just on a wearable and not on phones.</p>
+
+<p>Don't worry, Android have you covered. Introducing <code>NotificationCompat.WearableExtender</code>, this guy allows to extend a regular notifications with features specially designed for wearable devices.
+For example, you can add actions using <code>NotificationCompat.Action</code>. And the best part, is that it's fairly simple, almost the same as you have been using notifications before.</p>
+
+<p>What you will do:</p>
+
+<ol>
+<li>Add a button element to <code>activity_main.xml</code> layout, that triggers a notification with extended actions for Wear. Remember to add <code>onClick</code> handler.</li>
+<li>Add a method on <code>MainActitivy.java</code> to handle the <code>onClick</code> event on the button. This method is the one that will trigger the notification.</li>
+<li>Create a notifcation using <code>NotificationCompat.Builder</code> and <code>NotificationCompat.WearableExtender</code>, remember to set a title, content and icon. Add at least one action only for Wear.</li>
+<li>Use <code>extend</code> on the notification builder to pass the notification extender with the Wear action the notification being built.</li>
+<li>Get an instance of <code>NotificationManagerCompat</code> and send the notification. You should be able to see it on your watch. Swipe left and find your actions!</li>
+</ol><h3>
+<a name="43-lets-listen-to-your-users" class="anchor" href="#43-lets-listen-to-your-users"><span class="octicon octicon-link"></span></a>4.3 Let's listen to your users</h3>
+
+<p>Having actions on Wear notifications is good, but it won't get your users too far if we don't provide a way for them to give input.
+Showing a keyboard on a watch just won't work. But, we have something better, we can take input from voice! Android notitications can expose actions that listen to your users, and
+use voice recognition to convert your user's voice into text. This way your users will be able to send messages, and do almost anything effortless.</p>
+
+<p>Let's add some voice capabilities to our notifications, don't worry, it's very easy and very fun to do.</p>
+
+<p>All you need is some help from <code>NotificationCompat.Action</code> and our new friend, <code>RemoteInput.Builder</code>.<br><code>RemoteInput.Builder</code> allows you to build a <code>RemoteInput</code> object, that can be added to a <code>NotificationCompatAction</code>, allowing your users to speak commands.</p>
+
+<p>What you will do:</p>
+
+<ol>
+<li>Add a button element to <code>activity_main.xml</code> layout, that triggers a notification with extended voice actions for Wear. Remember to add <code>onClick</code> handler.</li>
+<li>Add a method on <code>MainActitivy.java</code> to handle the <code>onClick</code> event on the button. This method is the one that will trigger the notification.</li>
+<li>Create a notifcation using <code>NotificationCompat.Builder</code> and <code>NotificationCompat.WearableExtender</code>, <code>NotificationCompat.Action</code> and <code>RemoteInput.Builder</code> to build a voice-powered notification.</li>
+<li>Configure the voice action to call <code>VoiceCommandActivity</code>.</li>
+<li>Use <code>extend</code> on the notification builder to pass the notification extender with the Wear action the notification being built.</li>
+<li>Get an instance of <code>NotificationManagerCompat</code> and send the notification. You should be able to see it on your watch. Swipe left, tap on the action, and say something!</li>
+<li>Update <code>VoiceCommandActivity.java</code> to retrieve the speech-to-text value from the <code>RemoteInput</code> and show it as part of the activity.</li>
+</ol><h3>
+<a name="44-lets-add-some-style-to-our-notifications" class="anchor" href="#44-lets-add-some-style-to-our-notifications"><span class="octicon octicon-link"></span></a>4.4 Let's add some style to our notifications</h3>
+
+<p>So far we found different ways to allow our users to take action on the information we make availaable to them. But, all this notifications look more or less the same.
+There will be cases where you will find that not all notifications are as effective with the default look and feel. This is why Android provides different notification styles like:</p>
+
+<ul>
+<li>NotificationCompat.BigPictureStyle</li>
+<li>NotificationCompat.BigTextStyle</li>
+<li>NotificationCompat.InboxStyle</li>
+</ul><p>This styles can give your notifications a more appropiate look, if you want to emphasize content like images, go with <code>BigPictureStyle</code>, if you need more space for text, use <code>BigTextStyle</code>.</p>
+
+<p>What you will do:</p>
+
+<ol>
+<li>Add a button element to <code>activity_main.xml</code> layout, that triggers a notification with some styling. Remember to add <code>onClick</code> handler.</li>
+<li>Add a method on <code>MainActitivy.java</code> to handle the <code>onClick</code> event on the button. This method is the one that will trigger the notification.</li>
+<li>Create a notifcation using <code>NotificationCompat.Builder</code> and one of the <code>NotificationCompat.Style</code> classes to add a style to a notification.</li>
+<li>Get an instance of <code>NotificationManagerCompat</code> and send the notification. You should be able to see it on your watch. Swipe left, tap on the action, and say something!</li>
+</ol><h2>
+<a name="5-done" class="anchor" href="#5-done"><span class="octicon octicon-link"></span></a>5. Done!</h2>
+
+<p>Ok, we have done a lot of stuff with notifications today. But there is still more.</p>
+
+<p>If interested, take a look on how to group notifications together, giving your users a better way to handle multiple notification from the same app.
+Also, take a look at how yo create custom notifications using layouts, this allows for maximum flexibility so don't feel restriced by the existing styles.
+And remember to look for adding notification pages, or notification stacks.</p>
+
+<h3>
+<a name="congratulations" class="anchor" href="#congratulations"><span class="octicon octicon-link"></span></a>Congratulations!</h3>
+
+<p>You are now ready to start building amazing experiences for your users, taking advantage of many of the great features of Android Wear.
+Remember, this is just the begnning!</p>
         </section>
 
         <aside id="sidebar">
