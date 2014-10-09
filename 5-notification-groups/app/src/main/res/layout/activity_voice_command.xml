@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="codelab.fit.com.wear101.VoiceCommandActivity"
+    android:background="#ff22abff">
+
+    <TextView
+        android:id="@+id/text_vew"
+        android:text="@string/hello_world"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="50sp"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+</RelativeLayout>
