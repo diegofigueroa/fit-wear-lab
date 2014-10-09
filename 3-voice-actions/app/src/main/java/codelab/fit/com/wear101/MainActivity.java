@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
                 .build();
 
         // Create an intent for the reply action
-        final Intent replyIntent = new Intent(this, MainActivity.class);
+        final Intent replyIntent = new Intent(this, VoiceCommandActivity.class);
         final PendingIntent replyPendingIntent = PendingIntent.getActivity(this, 0, replyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Create the reply action and add the remote input
